@@ -1,26 +1,38 @@
 import Commands.Action;
+import Commands.Decoder;
 import Commands.Encoder;
+import Common.Common;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
 
         if (args.length > 0) {
             String action = args[0];
-            String[] parameters = Arrays.copyOfRange(args, 1, args.length);
 
-            if (action.equals("1")) {
-                Encoder encoder = new Encoder();
-                String result = null;
-                try {
-                    result = encoder.execute(parameters, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if (action.equals("1") || action.equals("2")) {
+                int key = Integer.parseInt(args[1]) % Common.ALPHABET.length();
+                String[] parameters = Arrays.copyOfRange(args, 2, args.length);
+                String result = "";
+
+                if (action.equals("1")) {
+                    Action encoder = new Encoder();
+                    try {
+                        result = encoder.execute(key, parameters);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if (action.equals("2")) {
+                    Action decoder = new Decoder();
+                    try {
+                        result = decoder.execute(key, parameters);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                System.out.printf("%s", result);
+                System.out.printf("%s%n", result);
             }
 //            else if (action.equals("2")) {
 //
