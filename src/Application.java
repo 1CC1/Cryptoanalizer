@@ -16,7 +16,7 @@ public class Application {
                 Encoder encoder = new Encoder();
                 String result = null;
                 try {
-                    result = encoder.execute(parameters);
+                    result = encoder.execute(parameters, 1);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

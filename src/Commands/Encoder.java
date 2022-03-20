@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Encoder implements Action {
     @Override
-    public String execute(String[] parameters) throws IOException {
+    public String execute(String[] parameters, int key2) throws IOException {
         Path src = Path.of(Constants.TXT_FOLDER + parameters[0]);
         Path dst = Path.of(Constants.TXT_FOLDER + parameters[1]);
         int key = Integer.parseInt(parameters[2]) % Constants.ALPHABET.length();
