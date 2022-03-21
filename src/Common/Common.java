@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 public class Common {
     private static final String rus = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
@@ -13,7 +14,7 @@ public class Common {
     private static final String symbols = ",./<>?;':\"[]{}`~!@#№$%^&*()-_=+\\|";
     private static final String TXT_FOLDER = System.getProperty("user.dir") + File.separator + "texts" + File.separator;
 
-    public static final String ALPHABET = rus + rus.toUpperCase() + digits + symbols;
+    public static final char[] ALPHABET = (rus + rus.toUpperCase() + digits + symbols).toCharArray();
 
     public static String moveLetters(int key, String[] parameters) {
         Path src = Path.of(TXT_FOLDER + parameters[0]);
@@ -27,14 +28,14 @@ public class Common {
                 char[] charArray = line.toCharArray();
 
                 for (int i = 0; i < charArray.length - 1; i++) {
-                    int charIndex = ALPHABET.indexOf(charArray[i]);
+                    int charIndex = Arrays.binarySearch(ALPHABET, charArray[i]);
                     if (charIndex >= 0) {
-                        int newCharIndex = (charIndex + key) % ALPHABET.length();
+                        int newCharIndex = (charIndex + key) % ALPHABET.length;
                         if (key < 0 && newCharIndex < 0) {
-                            newCharIndex = ALPHABET.length() + newCharIndex;
+                            newCharIndex = ALPHABET.length + newCharIndex;
                         }
                         newCharIndex = Math.abs(newCharIndex);
-                        charArray[i] = ALPHABET.charAt(newCharIndex);
+                        charArray[i] = ALPHABET[newCharIndex];
                     }
                 }
 

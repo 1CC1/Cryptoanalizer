@@ -6,14 +6,16 @@ import Common.Common;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Application {
+public class Main {
     public static void main(String[] args) {
+
+        Arrays.sort(Common.ALPHABET);
 
         if (args.length > 0) {
             String action = args[0];
 
             if (action.equals("1") || action.equals("2")) {
-                int key = Integer.parseInt(args[1]) % Common.ALPHABET.length();
+                int key = Integer.parseInt(args[1]) % Common.ALPHABET.length;
                 String[] parameters = Arrays.copyOfRange(args, 2, args.length);
                 String result = "";
 
