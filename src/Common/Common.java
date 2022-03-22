@@ -12,8 +12,9 @@ public class Common {
     private static final String rus = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     private static final String digits = "0123456789";
     private static final String symbols = ",./<>?;':\"[]{}`~!@#№$%^&*()-_=+\\|";
-    private static final String TXT_FOLDER = System.getProperty("user.dir") + File.separator + "texts" + File.separator;
 
+    public static final String REGEX_PATTERN = "[^а-яА-я][ ]?([нН]а|[нН]ад|[иИ]ли|[тТ]ам|[пП]о|[оО]б|[иИ]з|[иИ]х|[еЕ]й|[еЕ]ё|[бБ]ез|[мМ]не|[пП]од|[нН]е|[нН]у|[кК]ак|[тТ]ак|[чЧ]то|[нН]ас|[еЕ]сли|[вВ]ы|[вВ]ас|[вВ]сех|[вВ]с[юя]|[бБ]ыл[а]|[нН]о|[оО]н[а]?|[оО]т|[дД]ля)[ ]";
+    public static final String TXT_FOLDER = System.getProperty("user.dir") + File.separator + "texts" + File.separator;
     public static final char[] ALPHABET = (rus + rus.toUpperCase() + digits + symbols).toCharArray();
 
     public static String moveLetters(int key, String[] parameters) {
