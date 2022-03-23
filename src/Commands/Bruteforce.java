@@ -10,17 +10,25 @@ import java.util.regex.Pattern;
 
 public class Bruteforce implements Action {
     @Override
-    public String execute(String[] parameters) throws IOException {
+    public String execute(String[] parameters) {
+        System.out.println("Bruteforcing...");
+
         int bestKey = Integer.MIN_VALUE;
         int bestEntryCount = 0;
 
-        for (int i = 1; i < Common.ALPHABET.length; i++) {
-//        for (int i = 1; i < 4; i++) {
-            int key = i % Common.ALPHABET.length;
+        for (int key = 1; key < Common.ALPHABET.length + 1; key++) {
             Common.moveLetters(-key, parameters);
 
-            Path dst = Path.of(Common.TXT_FOLDER + parameters[1]);
-            String text = Files.readString(dst);
+            Path dst = Path.of(parameters[1]);
+            if (dst.getParent() == null) {
+                dst = Path.of(Common.TXT_FOLDER + parameters[1]);
+            }
+            String text = "";
+            try {
+                text = Files.readString(dst);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             Pattern pattern = Pattern.compile(Common.REGEX_PATTERN);
             Matcher matcher = pattern.matcher(text);

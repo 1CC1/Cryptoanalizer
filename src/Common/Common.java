@@ -18,8 +18,15 @@ public class Common {
     public static final char[] ALPHABET = (rus + rus.toUpperCase() + digits + symbols).toCharArray();
 
     public static String moveLetters(int key, String[] parameters) {
-        Path src = Path.of(TXT_FOLDER + parameters[0]);
-        Path dst = Path.of(TXT_FOLDER + parameters[1]);
+        Path src = Path.of(parameters[0]);
+        if (src.getParent() == null) {
+            src = Path.of(TXT_FOLDER + parameters[0]);
+        }
+
+        Path dst = Path.of(parameters[1]);
+        if (dst.getParent() == null) {
+            dst = Path.of(TXT_FOLDER + parameters[1]);
+        }
 
         try (BufferedReader reader = Files.newBufferedReader(src);
              BufferedWriter writer = Files.newBufferedWriter(dst)) {
