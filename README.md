@@ -1,1 +1,1 @@
-First JavaRush academy project
+First JavaRush University project
